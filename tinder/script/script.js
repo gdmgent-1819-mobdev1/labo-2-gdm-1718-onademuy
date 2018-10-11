@@ -14,6 +14,7 @@ function updateUser(){
     return res.json()
   })
   .then(function(data){
+    console.log(data.results);
     picture.src = data.results[0].picture.large;
     name.innerText = data.results[0].name.last + " " + data.results[0].name.first; 
     age.innerText = data.results[0].dob.age;
@@ -24,10 +25,8 @@ function updateUser(){
   });
 }
 
-// Buttons en updaten
-let btnX = document.getElementById("btn_cross");
-btnX.addEventListener("click", function(){
-
+function dislikePerson() {
+  console.log('clicked');
     //adds the item to the first in the array
     crosses.push(people[0]);
     console.log(crosses);
@@ -37,8 +36,10 @@ btnX.addEventListener("click", function(){
     localStorage.removeItem("people");
 
     updateUser();
-
-});
+}
+// Buttons en updaten
+let btnX = document.getElementById("btn_cross");
+btnX.addEventListener("click", dislikePerson);
 
 let btnV = document.getElementById("btn_heart");
 btnV.addEventListener("click", function(){
